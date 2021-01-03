@@ -5,9 +5,13 @@ class Singleton{
         
     }
 
-    public static synchronized Singleton getSingleton(){
+    public static Singleton getSingleton(){
         if(null==singleton){
-            singleton = new Singleton();
+            synchronized(Singleton.class){
+                if(null==singleton){
+                    singleton = new Singleton();
+                }
+            }
         }
         return singleton;
     }
